@@ -24,15 +24,17 @@ func readTextFile(idCode string) {
 	data, err := os.ReadFile(pathAndFileName)
 	checkError(err)
 	fmt.Printf(`
----%s---------
+>>> %s
+----------------------------------------------
 %s
---------------
+----------------------------------------------
 `, pathAndFileName, data)
 }
 
 func main() {
-	colors := []string{"red", "blue", "yellow"}
+	colors := []string{"red", "blue", "yellow", "green"}
 	for _, color := range colors {
 		createTextFile(color, fmt.Sprintf("This is content about the color %s.", color))
 	}
+	readTextFile("yellow")
 }
