@@ -7,8 +7,9 @@ import (
 	"path/filepath"
 )
 
+const dirName = "output"
+
 func createTextFile(idCode, content string) {
-	dirName := "output"
 	err := os.MkdirAll(dirName, 0755)
 	pathAndFileName := filepath.Join(dirName, idCode+".txt")
 	file, err := os.Create(pathAndFileName)
@@ -16,6 +17,17 @@ func createTextFile(idCode, content string) {
 	_, err = io.WriteString(file, content)
 	checkError(err)
 	defer file.Close()
+}
+
+func readTextFile(idCode string) {
+	pathAndFileName := filepath.Join(dirName, idCode+".txt")
+	data, err := os.ReadFile(pathAndFileName)
+	checkError(err)
+	fmt.Printf(`
+---%s---------
+%s
+--------------
+`, pathAndFileName, data)
 }
 
 func main() {
