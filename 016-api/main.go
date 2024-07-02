@@ -17,7 +17,7 @@ func main() {
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode([]string{"C#", "Java", "Ruby", "Python", "JavaScript"})
+		json.NewEncoder(w).Encode([]string{"C#", "Java", "Ruby", "Python", "JavaScript", "Go"})
 	})
 	fmt.Printf("listening at http://localhost:%v/languages\n", port)
 	http.ListenAndServe(":"+strconv.Itoa(port), nil)

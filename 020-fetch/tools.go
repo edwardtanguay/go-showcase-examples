@@ -6,6 +6,8 @@ func separator() {
 	fmt.Println("---")
 }
 
-func subtract(a, b int) int {
-	return a - b
+func checkError(err error) {
+	if err != nil {
+		panic(err)
+	}
 }
