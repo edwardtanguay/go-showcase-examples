@@ -34,17 +34,18 @@ func main() {
 
 	displayColors(colors)
 
+	// sort
 	sort.Strings(colors)
 
 	displayColors(colors)
 
 	// remove last item
-	colors = append(colors[:len(colors)-1])
+	colors = colors[:len(colors)-1]
 
 	displayColors(colors)
 
 	// remove first item
-	colors = append(colors[1:len(colors)])
+	colors = colors[1:]
 
 	displayColors(colors)
 
