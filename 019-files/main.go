@@ -4,16 +4,18 @@ import (
 	// "fmt"
 	"io"
 	"os"
+	"path/filePath"
 )
 
 func createTextFile(idCode, content string) {
-	fileName := idCode + ".txt"
-	file, err := os.Create(fileName)
+	dirName := "output"
+	err := os.MkdirAll(dirName, 0755)
+	pathAndFileName := filepath.Join(dirName, idCode + ".txt")
+	file, err := os.Create(pathAndFileName)
 	checkError(err)
 	_, err = io.WriteString(file, content)
 	checkError(err)
 	defer file.Close()
-
 }
 
 func main() {
