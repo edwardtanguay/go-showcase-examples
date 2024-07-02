@@ -13,6 +13,7 @@ func main() {
 
 	// single line defintion
 	scores := [4]int{89, 75, 99, 66}
+	fmt.Println("scores", scores)
 	fmt.Printf("The last score is %d.\n", scores[len(scores)-1])
 
 }
