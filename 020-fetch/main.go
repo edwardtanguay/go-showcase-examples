@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"strings"
 )
 
 const url = "https://edwardtanguay.vercel.app/share/skills.json"
@@ -20,24 +19,30 @@ func main() {
 	bytes, err := io.ReadAll(resp.Body)
 	checkError(err)
 
-	content := string(bytes)
-	fmt.Print(content)
-}
+	json := string(bytes)
+	fmt.Print(json)
 
-func getSkillsFromJson(content string) []Skill {
-	skills := make([]Skill, 0, 20)
-	decoder := json.NewDecoder(strings.NewReader(content))
-	_, err := decoder.Token()
-	checkError(err)
-	var skill Skill
-	for decoder.More() {
+	skills := getSkillsFromJson(json)
 
+	for i, skill := range skills {
+		fmt.Printf("Skill %d:\n", i+1)
+		fmt.Printf("  ID Code: %s\n", skill.IdCode)
+		fmt.Printf("  Name: %s\n", skill.Name)
+		fmt.Printf("  URL: %s\n", skill.Url)
+		fmt.Printf("  Description: %s\n\n", skill.Description)
 	}
 }
 
+func getSkillsFromJson(content string) []Skill {
+	var skills []Skill
+	err := json.Unmarshal([]byte(content), &skills)
+	checkError(err)
+	return skills
+}
+
 type Skill struct {
-	idCode      string
-	name        string
-	url         string
-	description string
+	IdCode      string `json:"idCode"`
+	Name        string `json:"name"`
+	Url         string `json:"url"`
+	Description string `json:"description"`
 }
