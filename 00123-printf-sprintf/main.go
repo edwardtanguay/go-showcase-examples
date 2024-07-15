@@ -38,4 +38,11 @@ func main() {
 	message := fmt.Sprintf("length is %[2]f, and age is %[1]d", age, length) 
 	fmt.Printf("The message is \"%s\".\n", message)
 
+	// formatting
+	price := 23.82983
+	fmt.Printf("The price is: %.2f\n", price)
+	fmt.Printf("The price is: %10f\n", price)
+	fmt.Printf("The price is: %+10.2f\n", price)
+	fmt.Printf("The price is: %010.2f\n", price)
+
 }
