@@ -1,12 +1,12 @@
 [
 	{
-		"FirstName": "Hans",
-		"LastName": "Hackert",
-		"Age": 43
+		"firstName": "Hans",
+		"lastName": "Hackert",
+		"age": 43
 	},
 	{
-		"FirstName": "Petra",
-		"LastName": "Reinecke",
-		"Age": 52
+		"firstName": "Petra",
+		"lastName": "Reinecke",
+		"age": 52
 	}
 ]

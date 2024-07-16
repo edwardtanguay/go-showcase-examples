@@ -7,9 +7,9 @@ import (
 )
 
 type Person struct {
-	FirstName string
-	LastName  string
-	Age       int
+	FirstName string `json:"firstName"`
+	LastName  string `json:"lastName"`
+	Age       int    `json:"age"`
 }
 
 func writeFile(fileName string, content string) {
