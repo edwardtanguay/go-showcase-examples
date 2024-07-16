@@ -1,0 +1,17 @@
+[
+	{
+		"hex": "#f0f8ff",
+		"name": "AliceBlue",
+		"textColor": "dark"
+	},
+	{
+		"hex": "#faebd7",
+		"name": "AntiqueWhite",
+		"textColor": "dark"
+	},
+	{
+		"hex": "#00ffff",
+		"name": "Aqua",
+		"textColor": "dark"
+	}
+]
