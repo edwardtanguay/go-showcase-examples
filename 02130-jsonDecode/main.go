@@ -6,9 +6,9 @@ import "os"
 import "encoding/json"
 
 type HtmlColor struct {
-	Hex string
-	Name string
-	TextColor string
+	Hex string 			`json:"hex"`
+	HtmlName string 	`json:"name"`
+	Color string 		`json:"textColor"`
 }
 
 func main() {
