@@ -15,5 +15,9 @@ func writeFile(fileName, content string) {
 }
 
 func main() {
-	writeFile("test.txt", "first line")
+	writeFile("test.txt", "first line\nsecond line")
 }
+
+
+
+
