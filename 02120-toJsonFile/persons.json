@@ -1,1 +1,12 @@
-[{},{}]
+[
+	{
+		"FirstName": "Hans",
+		"LastName": "Hackert",
+		"Age": 43
+	},
+	{
+		"FirstName": "Petra",
+		"LastName": "Reinecke",
+		"Age": 52
+	}
+]

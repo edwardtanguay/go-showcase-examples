@@ -7,9 +7,9 @@ import (
 )
 
 type Person struct {
-	firstName string
-	lastName  string
-	age       int
+	FirstName string
+	LastName  string
+	Age       int
 }
 
 func writeFile(fileName string, content string) {
@@ -26,14 +26,14 @@ func writeFile(fileName string, content string) {
 func main() {
 	fileName := "persons.json"
 
-	persons := []Person{{firstName: "Hans", lastName: "Hackert", age: 43}, {firstName: "Petra", lastName: "Reinecke", age: 52}}
+	persons := []Person{{FirstName: "Hans", LastName: "Hackert", Age: 43}, {FirstName: "Petra", LastName: "Reinecke", Age: 52}}
 
 	fmt.Println("Saving to file as JSON:")
 	for i, person := range persons {
-		fmt.Printf("%d. %s\n", i+1, person.firstName+" "+person.lastName)
+		fmt.Printf("%d. %s\n", i+1, person.FirstName+" "+person.LastName)
 	}
 
-	json, err := json.Marshal(persons)
+	json, err := json.MarshalIndent(persons, "", "	")
 	if err != nil {
 		println("could not convert struct to JSON text")
 	}
