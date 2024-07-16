@@ -1,17 +1,28 @@
 package main
 
-import "net/http"
+import (
+	"io"
+	"net/http"
+)
 
-func getContentFromUrl(url string) {
+func getContentFromUrl(url string) string {
 	resp, err := http.Get(url)
 	if err != nil {
 		panic(err)
 	}
 	defer resp.Body.Close()
 
-	println(resp.StatusCode)
+	statusCode := resp.StatusCode
+	if statusCode != 200 {
+		return ""
+	} else {
+		byteContent, _ := io.ReadAll(resp.Body)
+		return string(byteContent)
+	}
+
 }
 
 func main() {
-	getContentFromUrl("https://edwardtanguay.vercel.app/share/htmlcolors.json")
+	content := getContentFromUrl("https://edwardtanguay.vercel.app/share/htmlcolors.json")
+	println(content)
 }
