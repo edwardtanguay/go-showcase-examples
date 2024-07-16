@@ -18,7 +18,7 @@ func deleteNestedDirectories(directoryPath string) {
 }
 
 func main() {
-	// createNestedDirectories("output/images")	
-	// createNestedDirectories("output/data")	
-	deleteNestedDirectories("output")
+	createNestedDirectories("output/images")	
+	createNestedDirectories("output/data")	
+	// deleteNestedDirectories("output")
 }
