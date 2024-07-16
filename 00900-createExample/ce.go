@@ -6,21 +6,11 @@ import (
 	"path/filepath"
 )
 
-func main() {
-	if len(os.Args) < 2 {
-		fmt.Println("Usage: ce <directory-name>")
-		return
-	}
+var dirName = os.Args[1]
 
-	dirName := os.Args[1]
+func writeFile(fileName string, content string) {
 
-	err := os.MkdirAll(dirName, 0755)
-	if err != nil {
-		fmt.Printf("Error creating directory: %v\n", err)
-		return
-	}
-
-	filePath := filepath.Join(dirName, "main.go")
+	filePath := filepath.Join(dirName, fileName)
 
 	file, err := os.Create(filePath)
 
@@ -30,7 +20,26 @@ func main() {
 	}
 	defer file.Close()
 
-	content := `
+	_, err = file.WriteString(content)
+	if err != nil {
+		fmt.Printf("Error writing to file: %v\n", err)
+		return
+	}
+}
+
+func main() {
+	if len(os.Args) < 2 {
+		fmt.Println("Usage: ce <directory-name>")
+		return
+	}
+
+	err := os.MkdirAll(dirName, 0755)
+	if err != nil {
+		fmt.Printf("Error creating directory: %v\n", err)
+		return
+	}
+
+	writeFile("main.go", `
 package main
 
 import "fmt"
@@ -38,12 +47,6 @@ import "fmt"
 func main() {
 	fmt.Println("nnn")
 }
-`
-	_, err = file.WriteString(content)
-	if err != nil {
-		fmt.Printf("Error writing to file: %v\n", err)
-		return
-	}
+`)
 
-	fmt.Printf("Created directory '%s' and file '%s/main.go' successfully.\n", dirName, dirName)
 }
