@@ -13,17 +13,16 @@ func main() {
 	frameworks := map[string]string{
 		"svelte":  "Svelte",
 		"angular": "Angular",
-		"solid": "SolidJS",
+		"solid":   "SolidJS",
 	}
 	frameworks["react"] = "React"
 	frameworks["nextjs"] = "Next.js"
 	frameworks["vue"] = "Vue.js"
-	
+
 	display(frameworks)
 
 	delete(frameworks, "solid")
 
 	display(frameworks)
 
-	
 }

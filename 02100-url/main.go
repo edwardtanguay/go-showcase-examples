@@ -4,10 +4,14 @@ package main
 import "fmt"
 import "net/url"
 
-func getUrlInfos(_url string) (string, url.Values) {
+func getUrlInfos(_url string) (string, map[string]string) {
 	urlInfo, _ := url.Parse(_url)	
 	baseUrl := fmt.Sprintf("%s://%s", urlInfo.Scheme, urlInfo.Host) 
-	queryVars := urlInfo.Query()
+	rawQueryVars := urlInfo.Query()
+	queryVars := make(map[string]string) 
+	for k,v := range rawQueryVars{
+		queryVars[k] = v[0]
+	}
 	return baseUrl, queryVars
 }
 
