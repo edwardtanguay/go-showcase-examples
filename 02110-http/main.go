@@ -5,6 +5,12 @@ import (
 	"net/http"
 )
 
+type HtmlColor struct {
+	hex string
+	name string
+	dark string
+}
+
 func getContentFromUrl(url string) string {
 	resp, err := http.Get(url)
 	if err != nil {
