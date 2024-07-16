@@ -19,6 +19,6 @@ func getLinesFromFile(fileName string) []string {
 func main() {
 	lines := getLinesFromFile("main.go")
 	for i,line := range lines {
-		fmt.Printf("%d. %s\n", i+1, line)
+		fmt.Printf("%03d| %s\n", i+1, line)
 	}
 }
