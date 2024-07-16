@@ -6,9 +6,7 @@ import (
 	"path/filepath"
 )
 
-var dirName = os.Args[1]
-
-func writeFile(fileName string, content string) {
+func writeFile(dirName string, fileName string, content string) {
 
 	filePath := filepath.Join(dirName, fileName)
 
@@ -33,13 +31,15 @@ func main() {
 		return
 	}
 
+	var dirName = os.Args[1]
+
 	err := os.MkdirAll(dirName, 0755)
 	if err != nil {
 		fmt.Printf("Error creating directory: %v\n", err)
 		return
 	}
 
-	writeFile("main.go", `
+	writeFile(dirName, "main.go", `
 package main
 
 import "fmt"
