@@ -1,4 +1,3 @@
-
 package main
 
 import "os"
@@ -8,7 +7,11 @@ func writeFile(fileName, content string) {
 	if err != nil {
 		panic(err)
 	}
-	println(999, file.Name())
+	_, err = file.WriteString(content)
+	if err != nil {
+		panic(err)
+	}
+
 }
 
 func main() {
