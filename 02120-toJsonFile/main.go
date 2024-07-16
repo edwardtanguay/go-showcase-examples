@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"os"
 )
@@ -32,6 +33,10 @@ func main() {
 		fmt.Printf("%d. %s\n", i+1, person.firstName+" "+person.lastName)
 	}
 
-	writeFile(fileName, "nnn\nooo")
+	json, err := json.Marshal(persons)
+	if err != nil {
+		println("could not convert struct to JSON text")
+	}
+	writeFile(fileName, string(json))
 
 }
