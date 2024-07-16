@@ -6,9 +6,9 @@ import "os"
 import "encoding/json"
 
 type HtmlColor struct {
-	hex string
-	name string
-	textColor string
+	Hex string
+	Name string
+	TextColor string
 }
 
 func main() {
@@ -18,5 +18,5 @@ func main() {
 	var htmlColors []HtmlColor
 	json.Unmarshal(content, &htmlColors)
 
-	fmt.Printf("%#v\n\n", htmlColors)
+	fmt.Printf("%#v\n", htmlColors)
 }
