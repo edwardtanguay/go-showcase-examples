@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"strings"
 )
 
 func getLinesFromFile(fileName string) {
@@ -11,7 +12,8 @@ func getLinesFromFile(fileName string) {
 		panic(err)
 	}
 	contents := string(byteContents)
-	fmt.Printf("%s is of type %T", contents, contents)
+	lines := strings.Split(contents, "\n")
+	fmt.Println(strings.Join(lines, "|"))
 }
 
 func main() {
