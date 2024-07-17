@@ -5,5 +5,6 @@ import "fmt"
 
 func main() {
 	separator()
-	fmt.Println("with module")
+	num := 123
+	fmt.Printf("The num is %d", num)
 }
