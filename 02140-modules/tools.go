@@ -5,6 +5,8 @@ import (
 	"strings"
 )
 
+var url = "http://google.com"
+
 func separator(title ...string) {
 	width := 50
 	preWidth := 3
