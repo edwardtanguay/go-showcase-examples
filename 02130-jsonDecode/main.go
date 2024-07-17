@@ -7,7 +7,7 @@ import (
 )
 
 type HtmlColor struct {
-	Hex      string `json:"hex"`
+	Hex      string 
 	HtmlName string `json:"name"`
 	Color    string `json:"textColor"`
 }
