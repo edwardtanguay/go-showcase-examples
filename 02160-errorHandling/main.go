@@ -19,19 +19,21 @@ func (emp *Employee) addSalesConference(name string) error {
 }
 
 func main() {
-	emp1 := Employee{"James Ashton", "sales", []string{"Sales World", "Sales Marketplace"}}
+	emp1 := Employee{"James Adverty", "sales", []string{"Sales World", "Sales Marketplace"}}
 	emp2 := Employee{"Sven Techton", "it", []string{"JavaScript World", "IT trends"}}
+	emp3 := Employee{"Angel Marketon", "sales", []string{"Sales World", "Sales Marketplace"}}
 
-	err := emp1.addSalesConference("Sales Experts Conference")
-	if(err != nil) {
-		fmt.Printf("ERROR: %v", err)
+	employees := []Employee{emp1, emp2, emp3}
+
+	for _, employee := range employees {
+		err := employee.addSalesConference("Sales Experts Conference")
+		if err != nil {
+			fmt.Printf("ERROR: %v\n", err)
+		}
 	}
 
-	err2 := emp2.addSalesConference("Sales Experts Conference")
-	if(err2 != nil) {
-		fmt.Printf("ERROR: %v\n", err2)
+	for _, employee := range employees {
+		fmt.Printf("%#v\n", employee)
 	}
 
-	fmt.Printf("%#v\n", emp1)
-	fmt.Printf("%#v\n", emp2)
 }
