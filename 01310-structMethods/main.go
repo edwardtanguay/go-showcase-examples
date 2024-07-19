@@ -9,10 +9,12 @@ type Framework struct {
 }
 
 func (f Framework) display() string {
-	return fmt.Sprintf("nnn")
+	return fmt.Sprintf("%s was created in %d.", f.name, f.yearCreated)
 }
 
 func main() {
-	react := Framework{"React", 2013}
-	println(react.display())	
+	f1 := Framework{"React", 2013}
+	f2 := Framework{"Vue", 2014}
+	println(f1.display())	
+	println(f2.display())	
 }
