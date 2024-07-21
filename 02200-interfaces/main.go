@@ -13,13 +13,13 @@ type Circle struct {
 	Radius float64
 }
 
-type Rectangle struct {
-	Height float64
-	Width  float64
+func (c Circle) getArea() float64 {
+	return c.Radius * c.Radius * math.Pi
 }
 
-func (c Circle) getArea() float64 {
-	return c.Radius * math.Pi
+type Rectangle struct {
+	Height float64
+	Width float64
 }
 
 func (r Rectangle) getArea() float64 {
@@ -27,12 +27,13 @@ func (r Rectangle) getArea() float64 {
 }
 
 func main() {
-	c1 := Circle{2.11}
-	r1 := Rectangle{3.1, 4.5}
+	c1 := Circle{3.21}
+	r1 := Rectangle{3.23, 2.23}
 
 	shapes := []Shape{c1, r1}
 
 	for _, shape := range shapes {
-		fmt.Printf("Area for type %T is %f\n", shape, shape.getArea())
+		fmt.Printf("Shape of type %T has an area of %f.\n", shape, shape.getArea())
 	}
 }
+
