@@ -1,42 +1,38 @@
-
 package main
 
-import "fmt"
-import "math"
+import (
+	"fmt"
+	"math"
+)
 
-interface Shape {
+type Shape interface {
 	getArea() float64
 }
 
 type Circle struct {
-	radius float64
+	Radius float64
 }
 
 type Rectangle struct {
-	height float64
-	width float64
+	Height float64
+	Width  float64
 }
 
-(c Circle) {
-	func c.getArea() {
-		return radius * math.pi
-	}
-} 
+func (c Circle) getArea() float64 {
+	return c.Radius * math.Pi
+}
 
-(r Rectangle) {
-	func r.getArea() {
-		return r.height * r.width
-	}
+func (r Rectangle) getArea() float64 {
+	return r.Height * r.Width
 }
 
 func main() {
-	c1 := Shape(2.11)
-	r1 := Rectable(3.1, 4.5)
+	c1 := Circle{2.11}
+	r1 := Rectangle{3.1, 4.5}
 
 	shapes := []Shape{c1, r1}
 
-	for _,shape := range shapes {
-		fmt.Printf("Area is %f", shape.getArea())
+	for _, shape := range shapes {
+		fmt.Printf("Area for type %T is %f\n", shape, shape.getArea())
 	}
 }
-
