@@ -7,10 +7,6 @@ type Report struct {
 	Pages int
 }
 
-func (r Report) String() string {
-	return fmt.Sprintf("The report named \"%s\" has %d pages.", r.Title, r.Pages)
-}
-
 func main() {
 
 	r1 := Report{"Quarterly Sales Report", 23}
