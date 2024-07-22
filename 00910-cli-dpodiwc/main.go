@@ -5,7 +5,9 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"regexp"
 	"strings"
+	"time"
 )
 
 // build command: go build -o dpodiwc.exe main.go
@@ -53,6 +55,26 @@ func WriteLinesToFile(pathAndFileName string, lines []string) error {
 	return nil
 }
 
+func addSecondsToDateTime(dateTime string, seconds int) (string, error) {
+	const layout = "2006-01-02 15:04:05"
+
+	t, err := time.Parse(layout, dateTime)
+	if err != nil {
+		return "", fmt.Errorf("failed to parse dateTime: %w", err)
+	}
+
+	t = t.Add(time.Duration(seconds) * time.Second)
+
+	return t.Format(layout), nil
+}
+
+
+func replaceDateTime(line string, newDateTime string) string {
+	pattern := `\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}`
+	re := regexp.MustCompile(pattern)
+	return re.ReplaceAllString(line, newDateTime)
+}
+
 func main() {
 	if len(os.Args) < 2 {
 		fmt.Println("Datapod: Increment WhenCreated")
@@ -75,7 +97,12 @@ func main() {
 			} else {
 				var newLines []string
 				for _,line := range lines {
-					newLines = append(newLines, line + "nnn")
+					currentDateTime := time.Now().Format("2006-01-02 15:04:05")
+					newDateTime, err := addSecondsToDateTime(currentDateTime, 1)
+					if(err != nil) {
+						fmt.Printf("ERROR: %v", err)
+					}
+					newLines = append(newLines, replaceDateTime(line, newDateTime))
 				}
 
 				err := WriteLinesToFile(pathAndFileName, newLines)
