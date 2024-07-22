@@ -96,13 +96,18 @@ func main() {
 				fmt.Printf("ERROR: %v\n", err)
 			} else {
 				var newLines []string
+				seconds := 0
 				for _,line := range lines {
 					currentDateTime := time.Now().Format("2006-01-02 15:04:05")
-					newDateTime, err := addSecondsToDateTime(currentDateTime, 1)
+					newDateTime, err := addSecondsToDateTime(currentDateTime, seconds)
 					if(err != nil) {
 						fmt.Printf("ERROR: %v", err)
 					}
-					newLines = append(newLines, replaceDateTime(line, newDateTime))
+					newLine := replaceDateTime(line, newDateTime)
+					if(newLine != line) {
+						seconds++
+					}
+					newLines = append(newLines, newLine)
 				}
 
 				err := WriteLinesToFile(pathAndFileName, newLines)
