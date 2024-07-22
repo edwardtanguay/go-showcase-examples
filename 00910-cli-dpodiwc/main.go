@@ -73,7 +73,12 @@ func main() {
 			if(err != nil) {
 				fmt.Printf("ERROR: %v\n", err)
 			} else {
-				err := WriteLinesToFile(pathAndFileName, lines)
+				var newLines []string
+				for _,line := range lines {
+					newLines = append(newLines, line + "nnn")
+				}
+
+				err := WriteLinesToFile(pathAndFileName, newLines)
 				if(err != nil) {
 					fmt.Printf("ERROR: %v\n", err)
 				}
