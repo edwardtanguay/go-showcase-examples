@@ -37,13 +37,13 @@ func WriteLinesToFile(pathAndFileName string, lines []string) error {
 	if(err != nil) {
 		return fmt.Errorf("failed to open file: %w", err)
 	}
-	file.Close()
+	defer file.Close()
 
 	writer := bufio.NewWriter(file)
 	for _, line := range lines {
 		_, err := writer.WriteString(line + "\n")
 		if err != nil {
-			return fmt.Errorf("filed to write line to file: %w", err)
+			return fmt.Errorf("failed to write line to file: %w", err)
 		}
 	}
 	if err := writer.Flush(); err != nil {
