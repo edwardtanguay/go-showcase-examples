@@ -1,10 +1,16 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 )
 
+func FrameworkRouteHandler(w http.ResponseWriter, r *http.Request) {
+	frameworks := []string{"Angular", "React", "Vue"}
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(&frameworks)
+}
 
 func main() {
 
@@ -26,6 +32,8 @@ func main() {
 </html>
 		`, port, port)
 	})
+
+	http.HandleFunc("/frameworks", FrameworkRouteHandler)
 
 	fmt.Printf("listening at http://localhost:%d", port)
 	http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
