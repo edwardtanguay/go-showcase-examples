@@ -9,7 +9,7 @@ import (
 func FrameworkRouteHandler(w http.ResponseWriter, r *http.Request) {
 	frameworks := []string{"Angular", "React", "Vue"}
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(&frameworks)
+	json.NewEncoder(w).Encode(frameworks)
 }
 
 func main() {
