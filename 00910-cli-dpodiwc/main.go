@@ -3,9 +3,12 @@ package main
 import (
 	"fmt"
 	"os"
+	"strings"
 )
 
 // build command: go build -o dpodiwc.exe main.go
+
+const validFileEnding = ".dpod.txt"
 
 func main() {
 	if len(os.Args) < 2 {
@@ -17,9 +20,13 @@ func main() {
 		return
 	} else {
 
-		var fileName = os.Args[1]
+		fileName := os.Args[1]
 
-		fmt.Printf("fileName = %s\n", fileName)
+		if !strings.HasSuffix(fileName, validFileEnding) {
+			fmt.Printf("ERROR: File name must end with \"%s\"\n", validFileEnding)
+		} else {
+			fmt.Printf("processing %s\n", fileName)
+		}
 
 	}
 }
