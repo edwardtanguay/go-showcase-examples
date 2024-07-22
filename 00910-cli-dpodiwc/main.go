@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -12,7 +13,24 @@ import (
 const validFileEnding = ".dpod.txt"
 const basePath = "C:\\edward\\datapod2023\\datapod-for-vite-react-core\\currentImport"
 
-// func getLinesFromFile
+func getLinesFromFile(pathAndFileName string) ([]string, error) {
+	file, err := os.Open(pathAndFileName)
+	if err != nil {
+		return nil, err
+	}
+	defer file.Close()
+
+	var lines []string
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		lines = append(lines, scanner.Text())
+	}
+	if err := scanner.Err(); err != nil {
+		return nil, err
+	}
+
+	return lines, nil
+}
 
 func main() {
 	if len(os.Args) < 2 {
@@ -30,7 +48,12 @@ func main() {
 			fmt.Printf("ERROR: File name must end with \"%s\"\n", validFileEnding)
 		} else {
 			pathAndFileName := filepath.Join(basePath, fileName)
-			fmt.Printf("processing %s\n", pathAndFileName)
+			lines, err := getLinesFromFile(pathAndFileName)
+			if(err != nil) {
+				fmt.Printf("ERROR: %v", err)
+			} else {
+				fmt.Printf("File has %d lines.\n", len(lines))
+			}
 		}
 
 	}
