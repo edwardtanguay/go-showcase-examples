@@ -3,12 +3,16 @@ package main
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 	"strings"
 )
 
 // build command: go build -o dpodiwc.exe main.go
 
 const validFileEnding = ".dpod.txt"
+const basePath = "C:\\edward\\datapod2023\\datapod-for-vite-react-core\\currentImport"
+
+// func getLinesFromFile
 
 func main() {
 	if len(os.Args) < 2 {
@@ -25,7 +29,8 @@ func main() {
 		if !strings.HasSuffix(fileName, validFileEnding) {
 			fmt.Printf("ERROR: File name must end with \"%s\"\n", validFileEnding)
 		} else {
-			fmt.Printf("processing %s\n", fileName)
+			pathAndFileName := filepath.Join(basePath, fileName)
+			fmt.Printf("processing %s\n", pathAndFileName)
 		}
 
 	}
