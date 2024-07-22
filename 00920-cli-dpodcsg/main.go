@@ -3,11 +3,12 @@ package main
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 
 	"github.com/fatih/color"
 )
 
-// build command: go build -o dpodcsg.exe main.go
+// build command: go build -o dpodcsg.exe main.go tools.go
 
 const toScanPathAndFileName = "C:\\edward\\datapod2023\\datapod-for-vite-react-core\\currentImport\\skills.dpod.txt"
 const graphicsFromPath = "C:\\WORK\\import"
@@ -34,7 +35,31 @@ func main() {
 		if command != "copy" {
 			fmt.Printf("ERROR: the only valid command is \"copy\"")
 		} else {
-			fmt.Printf("copying...")
+			lines, err := GetLinesFromFile(toScanPathAndFileName)
+			if err != nil {
+				fmt.Printf("ERROR: %v\n", err)
+			}
+
+			// get all codes
+			var graphicIdCodes []string
+			for _, line := range lines {
+				graphicIdCode := GetGraphicCodeFromOutlineLine(line)
+				if graphicIdCode != "" {
+					graphicIdCodes = append(graphicIdCodes, graphicIdCode)
+				}
+			}
+
+			// copy the files
+			for _, graphicIdCode := range graphicIdCodes {
+				graphicFileName := graphicIdCode + ".png"
+				fromGraphicPathAndFileName := filepath.Join(graphicsFromPath, graphicFileName)
+				toGraphicPathAndFileName := filepath.Join(graphicsToPath, graphicFileName)
+				
+				err := CopyFile(fromGraphicPathAndFileName, toGraphicPathAndFileName)
+				if err != nil {
+					fmt.Printf("ERROR: %v", err)
+				}
+			}
 		}
 
 	}
