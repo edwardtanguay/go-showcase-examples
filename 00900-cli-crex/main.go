@@ -6,6 +6,8 @@ import (
 	"path/filepath"
 )
 
+// build command: go build -o crex.exe main.go 
+
 func writeFile(dirName string, fileName string, content string) {
 
 	filePath := filepath.Join(dirName, fileName)
@@ -27,7 +29,7 @@ func writeFile(dirName string, fileName string, content string) {
 
 func main() {
 	if len(os.Args) < 2 {
-		fmt.Println("Usage: ce <directory-name>")
+		fmt.Println("Usage: crex <directory-name>")
 		return
 	}
 
