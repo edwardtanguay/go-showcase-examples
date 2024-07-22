@@ -13,7 +13,7 @@ import (
 const validFileEnding = ".dpod.txt"
 const basePath = "C:\\edward\\datapod2023\\datapod-for-vite-react-core\\currentImport"
 
-func getLinesFromFile(pathAndFileName string) ([]string, error) {
+func GetLinesFromFile(pathAndFileName string) ([]string, error) {
 	file, err := os.Open(pathAndFileName)
 	if err != nil {
 		return nil, err
@@ -32,6 +32,27 @@ func getLinesFromFile(pathAndFileName string) ([]string, error) {
 	return lines, nil
 }
 
+func WriteLinesToFile(pathAndFileName string, lines []string) error {
+	file, err := os.OpenFile(pathAndFileName, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0644)
+	if(err != nil) {
+		return fmt.Errorf("failed to open file: %w", err)
+	}
+	file.Close()
+
+	writer := bufio.NewWriter(file)
+	for _, line := range lines {
+		_, err := writer.WriteString(line + "\n")
+		if err != nil {
+			return fmt.Errorf("filed to write line to file: %w", err)
+		}
+	}
+	if err := writer.Flush(); err != nil {
+		return fmt.Errorf("failed to flush writer: %w", err)
+	}
+
+	return nil
+}
+
 func main() {
 	if len(os.Args) < 2 {
 		fmt.Println("Datapod: Increment WhenCreated")
@@ -48,11 +69,14 @@ func main() {
 			fmt.Printf("ERROR: File name must end with \"%s\"\n", validFileEnding)
 		} else {
 			pathAndFileName := filepath.Join(basePath, fileName)
-			lines, err := getLinesFromFile(pathAndFileName)
+			lines, err := GetLinesFromFile(pathAndFileName)
 			if(err != nil) {
-				fmt.Printf("ERROR: %v", err)
+				fmt.Printf("ERROR: %v\n", err)
 			} else {
-				fmt.Printf("File has %d lines.\n", len(lines))
+				err := WriteLinesToFile(pathAndFileName, lines)
+				if(err != nil) {
+					fmt.Printf("ERROR: %v\n", err)
+				}
 			}
 		}
 
