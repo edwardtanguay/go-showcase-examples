@@ -9,12 +9,15 @@ import (
 func FrameworkRouteHandler(w http.ResponseWriter, r *http.Request) {
 	frameworks := []string{"Angular", "React", "Vue"}
 	w.Header().Set("Content-Type", "application/json")
+	// http.Error(w, "something went wrong", http.StatusInternalServerError)
 	json.NewEncoder(w).Encode(frameworks)
 }
 
 func main() {
 
 	port := 2346
+	
+	http.HandleFunc("/frameworks", FrameworkRouteHandler)
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, `
@@ -32,8 +35,6 @@ func main() {
 </html>
 		`, port, port)
 	})
-
-	http.HandleFunc("/frameworks", FrameworkRouteHandler)
 
 	fmt.Printf("listening at http://localhost:%d", port)
 	http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
