@@ -26,8 +26,8 @@ func (app *App) Initialize() error {
 func (app *App) Run() {
 	r := mux.NewRouter()
 	r.HandleFunc("/", app.handleHomeRoute).Methods("GET")
-	r.HandleFunc("/api/books", app.handleGetBooksRoute).Methods("GET")
-	r.HandleFunc("/api/books/{id}", app.handleGetSingleBookRoute).Methods("GET")
+	r.HandleFunc("/api/employees", app.handleGetEmployeesRoute).Methods("GET")
+	r.HandleFunc("/api/employees/{id}", app.handleGetSingleEmployeeRoute).Methods("GET")
 	fmt.Printf("API running at http://localhost:%d\n", app.Port)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", app.Port), r))
 }

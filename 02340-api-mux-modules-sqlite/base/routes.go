@@ -12,21 +12,22 @@ func (app *App) handleHomeRoute(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, `
 <h1>Northwind API</h1>
 <ul>
-	<li>get all books: <a href="http://localhost:9003/api/books">http://localhost:9003/api/books</a></li>
+	<li>get all employees: <a href="http://localhost:9003/api/employees">http://localhost:9003/api/employees</a></li>
+	<li>get one employee: <a href="http://localhost:9003/api/employees/1">http://localhost:9003/api/employees/1</a></li>
 </ul>
 	`)
 }
 
-func (app *App) handleGetBooksRoute(w http.ResponseWriter, _ *http.Request) {
+func (app *App) handleGetEmployeesRoute(w http.ResponseWriter, _ *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	books := []string{"Homo Deux", "Sapiens"}
-	json.NewEncoder(w).Encode(books)
+	employees := []string{"emp1", "emp2"}
+	json.NewEncoder(w).Encode(employees)
 }
 
-func (app *App) handleGetSingleBookRoute(w http.ResponseWriter, r *http.Request) {
+func (app *App) handleGetSingleEmployeeRoute(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r) 
 	id := params["id"]
 	w.Header().Set("Content-Type", "application/json")
-	books := []string{"book " + string(id)}
-	json.NewEncoder(w).Encode(books)
+	employees := []string{"employee ID=" + string(id)}
+	json.NewEncoder(w).Encode(employees)
 }
