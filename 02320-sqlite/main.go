@@ -13,6 +13,10 @@ type Employee struct {
 	LastName  string
 }
 
+func getEmployees() []Employee {
+	// test
+}
+
 func main() {
 	db, err := sql.Open("sqlite3", "./data/northwind.sqlite")
 	if err != nil {
