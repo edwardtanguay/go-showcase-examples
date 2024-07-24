@@ -1,25 +1,26 @@
-package models 
+package models
 
 import (
 	"database/sql"
-	"log"
+	"fmt"
 
 	_ "github.com/mattn/go-sqlite3"
 )
 
-func GetEmployees() (employees []Employee) {
+func GetEmployees() ([]Employee, error) {
 	db, err := sql.Open("sqlite3", "./data/northwind.sqlite")
 	if err != nil {
-		log.Fatal(err.Error())
+		return nil, fmt.Errorf("error opening database: %v", err)
 	}
 	defer db.Close()
 
 	rows, err := db.Query("SELECT FirstName, LastName FROM Employees")
 	if err != nil {
-		log.Fatal(err.Error())
+		return nil, fmt.Errorf("error querying database: %v", err)
 	}
 	defer rows.Close()
 
+	var employees []Employee
 	for rows.Next() {
 		var e Employee
 		rows.Scan(&e.FirstName, &e.LastName)
@@ -27,5 +28,5 @@ func GetEmployees() (employees []Employee) {
 		employees = append(employees, employee)
 	}
 
-	return
+	return employees, nil
 }
