@@ -18,6 +18,7 @@ func getEmployees() (employees []Employee) {
 	if err != nil {
 		log.Fatal(err.Error())
 	}
+	defer db.Close()
 
 	rows, err := db.Query("SELECT FirstName, LastName FROM Employees")
 	if err != nil {
@@ -26,19 +27,19 @@ func getEmployees() (employees []Employee) {
 	defer rows.Close()
 
 	for rows.Next() {
-		// var e Employee
-		// rows.Scan(&e.FirstName, &e.LastName)
-		// employee := Employee{e.FirstName, e.LastName}
-		// fmt.Printf("%#v\n", employee)
-
-		employee := Employee{"fff", "lll"}
+		var e Employee
+		rows.Scan(&e.FirstName, &e.LastName)
+		employee := Employee{e.FirstName, e.LastName}
 		employees = append(employees, employee)
-		return
 	}
+
 	return
 }
 
 func main() {
 	employees := getEmployees()
-	fmt.Printf("There are %d employees.\n", len(employees))
+	fmt.Printf("There are %d employees:\n", len(employees))
+	for i,emp := range employees {
+		fmt.Printf("%d. %s\n", i, emp.FirstName + " " + emp.LastName)
+	}
 }
