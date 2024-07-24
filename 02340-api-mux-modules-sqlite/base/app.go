@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+
+	"github.com/gorilla/mux"
 )
 
 type App struct {
@@ -22,8 +24,9 @@ func (app *App) Initialize() error {
 }
 
 func (app *App) Run() {
-	http.HandleFunc("/", app.handleHomeRoute)
-	http.HandleFunc("/api/books", app.handleGetBooksRoute)
+	r := mux.NewRouter()
+	r.HandleFunc("/", app.handleHomeRoute).Methods("GET")
+	r.HandleFunc("/api/books", app.handleGetBooksRoute).Methods("GET")
 	fmt.Printf("API running at http://localhost:%d\n", app.Port)
-	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", app.Port), nil))
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", app.Port), r))
 }
