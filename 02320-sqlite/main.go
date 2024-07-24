@@ -13,11 +13,7 @@ type Employee struct {
 	LastName  string
 }
 
-func getEmployees() []Employee {
-	// test
-}
-
-func main() {
+func getEmployees() {
 	db, err := sql.Open("sqlite3", "./data/northwind.sqlite")
 	if err != nil {
 		log.Fatal(err.Error())
@@ -36,4 +32,9 @@ func main() {
 		fmt.Printf("EMPLOYEE: %s, %s\n", e.LastName, e.FirstName)
 	}
 
+}
+
+func main() {
+	println("test")
+	getEmployees()
 }
