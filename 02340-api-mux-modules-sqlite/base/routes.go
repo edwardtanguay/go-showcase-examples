@@ -10,7 +10,7 @@ import (
 )
 
 func (app *App) handleHomeRoute(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, Header() + `
+	fmt.Fprintf(w, Header()+`
 <p>Welcome to this site.</p>
 	`)
 }
@@ -25,12 +25,12 @@ func (app *App) handleGetEmployeesRoute(w http.ResponseWriter, _ *http.Request) 
 		for _, emp := range employees {
 			fmt.Fprintf(&sb, "<li><a href=\"/employees/%d\">%s</a></li>", emp.Id, emp.FirstName+" "+emp.LastName)
 		}
-		fmt.Fprint(w, Header() + sb.String())
+		fmt.Fprint(w, Header()+sb.String())
 	}
 }
 
 func (app *App) handleGetSingleEmployeeRoute(w http.ResponseWriter, r *http.Request) {
-	params := mux.Vars(r) 
+	params := mux.Vars(r)
 	idStr := params["id"]
 	id, err := strconv.Atoi(idStr)
 	if err != nil {
@@ -42,9 +42,9 @@ func (app *App) handleGetSingleEmployeeRoute(w http.ResponseWriter, r *http.Requ
 		fmt.Printf("%#v\n", err)
 	} else {
 		var sb strings.Builder
-		for _, emp := range employees {
-			fmt.Fprintf(&sb, "%s, ID=%d", emp.FirstName+" "+emp.LastName, emp.Id)
-		}
-		fmt.Fprint(w, Header() + sb.String())
+		emp := employees[0]
+		fmt.Fprintf(&sb, "<h3>%s</h3>", emp.FirstName+" "+emp.LastName)
+		fmt.Fprintf(&sb, "<p>Id = %d</p>", emp.Id)
+		fmt.Fprint(w, Header()+sb.String())
 	}
 }
