@@ -7,7 +7,12 @@ import (
 )
 
 func (app *App) handleHomeRoute(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "<h1>Northwind API</h1>")
+	fmt.Fprintf(w, `
+<h1>Northwind API</h1>
+<ul>
+	<li>get all books: <a href="http://localhost:9003/api/books">http://localhost:9003/api/books</a></li>
+</ul>
+	`)
 }
 
 func (app *App) handleGetBooksRoute(w http.ResponseWriter, _ *http.Request) {
