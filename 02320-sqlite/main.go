@@ -26,12 +26,12 @@ func getEmployees() (employees []Employee) {
 	defer rows.Close()
 
 	for rows.Next() {
-		var e Employee
+		// var e Employee
+		// rows.Scan(&e.FirstName, &e.LastName)
+		// employee := Employee{e.FirstName, e.LastName}
+		// fmt.Printf("%#v\n", employee)
 
-		rows.Scan(&e.FirstName, &e.LastName)
-
-		employee := Employee{e.FirstName, e.LastName}
-		fmt.Printf("%#v\n", employee)
+		employee := Employee{"fff", "lll"}
 		employees = append(employees, employee)
 		return
 	}
