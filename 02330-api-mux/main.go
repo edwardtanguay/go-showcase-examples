@@ -51,6 +51,7 @@ func replaceBook(w http.ResponseWriter, r *http.Request) {
 			books = append(books[:index], books[index+1:]...)
 			var book Book
 			_ = json.NewDecoder(r.Body).Decode(&book)
+			fmt.Printf("%#v\n", book)
 			book.ID = params["id"]
 			books = append(books, book)
 			json.NewEncoder(w).Encode(book)
@@ -63,8 +64,30 @@ func replaceBook(w http.ResponseWriter, r *http.Request) {
 func editBook(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r)
-	fmt.Printf("%#v\n", params)
-	json.NewEncoder(w).Encode("test")
+	for index, item := range books {
+		if item.ID == params["id"] {
+			var updates map[string]interface{}
+			err := json.NewDecoder(r.Body).Decode(&updates)
+			if err != nil {
+				http.Error(w, err.Error(), http.StatusBadRequest)
+				return
+			}
+			if title, ok := updates["title"].(string); ok {
+				books[index].Title = title
+			}
+			if author, ok := updates["author"].(string); ok {
+				books[index].Author = author
+			}
+			if year, ok := updates["year"].(string); ok {
+				books[index].Year = year
+			}
+
+			json.NewEncoder(w).Encode(books[index])
+			return
+		}
+	}
+
+	http.Error(w, "Book not found", http.StatusNotFound)
 }
 
 func deleteBook(w http.ResponseWriter, r *http.Request) {
@@ -96,4 +119,3 @@ func main() {
 
 	log.Fatal(http.ListenAndServe(":9003", r))
 }
-

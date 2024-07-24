@@ -35,5 +35,6 @@ PATCH {{url}}/api/books/1
 content-type: application/json
 
 {
-  "title": "NEW TITLE",
+  "title": "Homo Deus333",
+  "year": "2000"
 }
