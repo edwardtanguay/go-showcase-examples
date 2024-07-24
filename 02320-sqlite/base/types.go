@@ -1,4 +1,4 @@
-package models
+package base
 
 type Employee struct {
 	FirstName string

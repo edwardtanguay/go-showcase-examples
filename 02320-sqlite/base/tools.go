@@ -1,4 +1,4 @@
-package models
+package base
 
 import (
 	"database/sql"
@@ -36,7 +36,7 @@ func (a *App) handleEmployeesRoute(w http.ResponseWriter, r *http.Request) {
 		var sb strings.Builder
 		fmt.Fprintf(&sb, "<h1>There are %d employees:</h1>", len(employees))
 		for i, emp := range employees {
-			fmt.Fprintf(&sb, "<li>%d. %s</li>", i+1, emp.FirstName+" "+emp.LastName)
+			fmt.Fprintf(&sb, "<li>nnn %d. %s</li>", i+1, emp.FirstName+" "+emp.LastName)
 		}
 		fmt.Fprint(w, sb.String())
 	}
