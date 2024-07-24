@@ -28,8 +28,13 @@ func handleHomeRoute(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Welcome to the API.")
 }
 
+func handleEmployeesRoute(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "here the employees")
+}
+
 func (a *App) Run() {
 	http.HandleFunc("/", handleHomeRoute)
+	http.HandleFunc("/employees", handleEmployeesRoute)
 	fmt.Printf("API running at http://localhost:%d\n", a.Port)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", a.Port), nil))
 }
