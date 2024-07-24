@@ -2,23 +2,31 @@
 package main
 
 import (
-	"fmt"
-	"strings"
+	"database/sql"
+	"log"
+
+	_ "github.com/mattn/go-sqlite3"
 )
 
-func separator(title ...string) {
-	width := 50
-	preWidth := 3
-	character := "="
-	if len(title) == 0 || title[0] == "" {
-		fmt.Println(strings.Repeat(character, width))
-	} else {
-		fmt.Printf("%s %s %s\n", strings.Repeat(character, preWidth), strings.ToUpper(title[0]), strings.Repeat(character, width - len(title[0]) - preWidth - 2))
-	}
-}
-
-func checkError(err error) {
+func getEmployees() (employees []Employee) {
+	db, err := sql.Open("sqlite3", "./data/northwind.sqlite")
 	if err != nil {
-		panic(err)
+		log.Fatal(err.Error())
 	}
+	defer db.Close()
+
+	rows, err := db.Query("SELECT FirstName, LastName FROM Employees")
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+	defer rows.Close()
+
+	for rows.Next() {
+		var e Employee
+		rows.Scan(&e.FirstName, &e.LastName)
+		employee := Employee{e.FirstName, e.LastName}
+		employees = append(employees, employee)
+	}
+
+	return
 }
