@@ -29,7 +29,7 @@ func handleHomeRoute(w http.ResponseWriter, r *http.Request) {
 }
 
 func (a *App) handleEmployeesRoute(w http.ResponseWriter, r *http.Request) {
-	employees, err := GetEmployees(a)
+	employees, err := a.GetEmployees()
 	if err != nil {
 		fmt.Printf("%#v\n", err)
 	} else {
@@ -49,7 +49,7 @@ func (a *App) Run() {
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", a.Port), nil))
 }
 
-func GetEmployees(a *App) ([]Employee, error) {
+func (a *App) GetEmployees() ([]Employee, error) {
 	rows, err := a.DB.Query("SELECT FirstName, LastName FROM Employees")
 	if err != nil {
 		return nil, fmt.Errorf("error querying database: %v", err)
