@@ -23,6 +23,7 @@ func (app *App) Initialize() error {
 
 func (app *App) Run() {
 	http.HandleFunc("/", app.handleHomeRoute)
+	http.HandleFunc("/api/books", app.handleGetBooksRoute)
 	fmt.Printf("API running at http://localhost:%d\n", app.Port)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", app.Port), nil))
 }
