@@ -1,14 +1,13 @@
-package main
+package models 
 
 import (
 	"database/sql"
 	"log"
 
-	"tanguay.info/02320-sqlite/models"
 	_ "github.com/mattn/go-sqlite3"
 )
 
-func getEmployees() (employees []models.Employee) {
+func GetEmployees() (employees []Employee) {
 	db, err := sql.Open("sqlite3", "./data/northwind.sqlite")
 	if err != nil {
 		log.Fatal(err.Error())
@@ -22,9 +21,9 @@ func getEmployees() (employees []models.Employee) {
 	defer rows.Close()
 
 	for rows.Next() {
-		var e models.Employee
+		var e Employee
 		rows.Scan(&e.FirstName, &e.LastName)
-		employee := models.Employee{FirstName: e.FirstName, LastName: e.LastName}
+		employee := Employee{FirstName: e.FirstName, LastName: e.LastName}
 		employees = append(employees, employee)
 	}
 
