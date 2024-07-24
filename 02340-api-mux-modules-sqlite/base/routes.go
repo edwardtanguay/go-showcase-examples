@@ -1,9 +1,9 @@
 package base
 
 import (
-	"encoding/json"
 	"fmt"
 	"net/http"
+	"strconv"
 	"strings"
 
 	"github.com/gorilla/mux"
@@ -35,8 +35,21 @@ func (app *App) handleGetEmployeesRoute(w http.ResponseWriter, _ *http.Request) 
 
 func (app *App) handleGetSingleEmployeeRoute(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r) 
-	id := params["id"]
-	w.Header().Set("Content-Type", "application/json")
-	employees := []string{"employee ID=" + string(id)}
-	json.NewEncoder(w).Encode(employees)
+	idStr := params["id"]
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		http.Error(w, "Invalid employee ID", http.StatusBadRequest)
+		return
+	}
+	employees, err := app.GetSingleEmployee(id)
+	if err != nil {
+		fmt.Printf("%#v\n", err)
+	} else {
+		var sb strings.Builder
+		fmt.Fprintf(&sb, "<h1>There are %d employees:</h1>", len(employees))
+		for i, emp := range employees {
+			fmt.Fprintf(&sb, "<li>(%d) %s</li>", i+1, emp.FirstName+" "+emp.LastName)
+		}
+		fmt.Fprint(w, sb.String())
+	}
 }
