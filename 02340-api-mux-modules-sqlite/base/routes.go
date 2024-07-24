@@ -11,11 +11,11 @@ import (
 
 func (app *App) handleHomeRoute(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, `
-<h1>Northwind API</h1>
-<ul>
-	<li>get all employees: <a href="http://localhost:9003/api/employees">http://localhost:9003/api/employees</a></li>
-	<li>get one employee: <a href="http://localhost:9003/api/employees/1">http://localhost:9003/api/employees/1</a></li>
-</ul>
+<h1>Northwind Site</h1>
+<hr>
+<a href="/">Home</a> | <a href="/employees">Employees</a>
+<hr>
+<p>Welcome</p>
 	`)
 }
 
