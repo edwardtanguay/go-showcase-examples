@@ -6,8 +6,8 @@ import (
 
 func main() {
 	a := base.App{}
+	defer a.DB.Close()
 	a.Port = 9003
 	a.Initialize()
 	a.Run()
-	defer a.DB.Close()
 }
