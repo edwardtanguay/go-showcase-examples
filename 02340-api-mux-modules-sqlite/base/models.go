@@ -3,7 +3,7 @@ package base
 import "fmt"
 
 func (app *App) GetEmployees() ([]Employee, error) {
-	rows, err := app.DB.Query("SELECT EmployeeID as Id, FirstName, LastName FROM Employees")
+	rows, err := app.DB.Query("SELECT EmployeeID as Id, FirstName, LastName, Notes FROM Employees")
 	if err != nil {
 		return nil, fmt.Errorf("error querying database: %v", err)
 	}
@@ -12,8 +12,8 @@ func (app *App) GetEmployees() ([]Employee, error) {
 	var employees []Employee
 	for rows.Next() {
 		var e Employee
-		rows.Scan(&e.Id, &e.FirstName, &e.LastName)
-		employee := Employee{Id: e.Id, FirstName: e.FirstName, LastName: e.LastName}
+		rows.Scan(&e.Id, &e.FirstName, &e.LastName, &e.Notes)
+		employee := Employee{Id: e.Id, FirstName: e.FirstName, LastName: e.LastName, Notes: e.Notes}
 		employees = append(employees, employee)
 	}
 
@@ -21,7 +21,7 @@ func (app *App) GetEmployees() ([]Employee, error) {
 }
 
 func (app *App) GetSingleEmployee(id int) ([]Employee, error) {
-	rows, err := app.DB.Query("SELECT EmployeeID as Id, FirstName, LastName FROM Employees WHERE EmployeeID = ?", id)
+	rows, err := app.DB.Query("SELECT EmployeeID as Id, FirstName, LastName, Notes FROM Employees WHERE EmployeeID = ?", id)
 	if err != nil {
 		return nil, fmt.Errorf("error querying database: %v", err)
 	}
@@ -30,8 +30,8 @@ func (app *App) GetSingleEmployee(id int) ([]Employee, error) {
 	var employees []Employee
 	for rows.Next() {
 		var e Employee
-		rows.Scan(&e.Id, &e.FirstName, &e.LastName)
-		employee := Employee{Id: e.Id, FirstName: e.FirstName, LastName: e.LastName}
+		rows.Scan(&e.Id, &e.FirstName, &e.LastName, &e.Notes)
+		employee := Employee{Id: e.Id, FirstName: e.FirstName, LastName: e.LastName, Notes: e.Notes}
 		employees = append(employees, employee)
 	}
 
