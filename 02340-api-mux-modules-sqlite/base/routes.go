@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+
+	"github.com/gorilla/mux"
 )
 
 func (app *App) handleHomeRoute(w http.ResponseWriter, r *http.Request) {
@@ -18,5 +20,13 @@ func (app *App) handleHomeRoute(w http.ResponseWriter, r *http.Request) {
 func (app *App) handleGetBooksRoute(w http.ResponseWriter, _ *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	books := []string{"Homo Deux", "Sapiens"}
+	json.NewEncoder(w).Encode(books)
+}
+
+func (app *App) handleGetSingleBookRoute(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r) 
+	id := params["id"]
+	w.Header().Set("Content-Type", "application/json")
+	books := []string{"book " + string(id)}
 	json.NewEncoder(w).Encode(books)
 }
