@@ -18,9 +18,9 @@ content-type: application/json
 }
 
 ### DELETE BOOK
-DELETE {{url}}/api/books/3
+DELETE {{url}}/api/books/1
 
-### EDIT BOOK
+### REPLACE BOOK
 PUT {{url}}/api/books/1
 content-type: application/json
 
@@ -28,4 +28,12 @@ content-type: application/json
   "title": "Homo Deus",
   "author": "Yuval Harari",
   "year": "2011"
+}
+
+### EDIT BOOK
+PATCH {{url}}/api/books/1
+content-type: application/json
+
+{
+  "title": "NEW TITLE",
 }

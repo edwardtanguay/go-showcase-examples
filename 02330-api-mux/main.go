@@ -2,8 +2,10 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
+
 	"github.com/gorilla/mux"
 )
 
@@ -41,7 +43,7 @@ func createBook(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(book)
 }
 
-func updateBook(w http.ResponseWriter, r *http.Request) {
+func replaceBook(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r)
 	for index, item := range books {
@@ -56,6 +58,13 @@ func updateBook(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 	json.NewEncoder(w).Encode(books)
+}
+
+func editBook(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	params := mux.Vars(r)
+	fmt.Printf("%#v\n", params)
+	json.NewEncoder(w).Encode("test")
 }
 
 func deleteBook(w http.ResponseWriter, r *http.Request) {
@@ -81,7 +90,8 @@ func main() {
 	r.HandleFunc("/api/books", getBooks).Methods("GET")
 	r.HandleFunc("/api/books/{id}", getBook).Methods("GET")
 	r.HandleFunc("/api/books", createBook).Methods("POST")
-	r.HandleFunc("/api/books/{id}", updateBook).Methods("PUT")
+	r.HandleFunc("/api/books/{id}", replaceBook).Methods("PUT")
+	r.HandleFunc("/api/books/{id}", editBook).Methods("PATCH")
 	r.HandleFunc("/api/books/{id}", deleteBook).Methods("DELETE")
 
 	log.Fatal(http.ListenAndServe(":9003", r))
