@@ -29,7 +29,7 @@ func main() {
 		var e Employee
 
 		rows.Scan(&e.FirstName, &e.LastName)
-		fmt.Printf("EMPLOYEE: %s, %s", e.LastName, e.FirstName)
+		fmt.Printf("EMPLOYEE: %s, %s\n", e.LastName, e.FirstName)
 	}
 
 }
