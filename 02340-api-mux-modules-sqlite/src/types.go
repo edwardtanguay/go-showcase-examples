@@ -1,8 +1,8 @@
-package base
+package src
 
 type Employee struct {
-	Id int
+	Id        int
 	FirstName string
 	LastName  string
-	Notes string
+	Notes     string
 }
