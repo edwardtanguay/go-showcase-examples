@@ -17,4 +17,9 @@ func main() {
 		fmt.Printf("Status: %s\n", gotools.SmartPlural(i, "bus", "buses"))
 	}
 
+	fmt.Printf("The test data is: %s\n", gotools.GetTestData())
+
+	employees := gotools.GetEmployees()
+	fmt.Printf("Employees: %#v\n", employees)
+
 }
