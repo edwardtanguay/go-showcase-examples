@@ -13,7 +13,7 @@ type Employee struct {
 	LastName  string
 }
 
-func getEmployees() {
+func getEmployees() (employees []Employee) {
 	db, err := sql.Open("sqlite3", "./data/northwind.sqlite")
 	if err != nil {
 		log.Fatal(err.Error())
@@ -29,12 +29,16 @@ func getEmployees() {
 		var e Employee
 
 		rows.Scan(&e.FirstName, &e.LastName)
-		fmt.Printf("EMPLOYEE: %s, %s\n", e.LastName, e.FirstName)
-	}
 
+		employee := Employee{e.FirstName, e.LastName}
+		fmt.Printf("%#v\n", employee)
+		employees = append(employees, employee)
+		return
+	}
+	return
 }
 
 func main() {
-	println("test")
-	getEmployees()
+	employees := getEmployees()
+	fmt.Printf("There are %d employees.\n", len(employees))
 }
