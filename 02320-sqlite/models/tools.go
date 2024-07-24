@@ -28,19 +28,18 @@ func handleHomeRoute(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Welcome to the API.")
 }
 
-func handleEmployeesRoute(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "here the employees")
+func (a *App) handleEmployeesRoute(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "here the employees v2")
 }
 
 func (a *App) Run() {
 	http.HandleFunc("/", handleHomeRoute)
-	http.HandleFunc("/employees", handleEmployeesRoute)
+	http.HandleFunc("/employees", a.handleEmployeesRoute)
 	fmt.Printf("API running at http://localhost:%d\n", a.Port)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", a.Port), nil))
 }
 
-// func GetEmployees() ([]Employee, error) {
-
+// func GetEmployees(a *App) ([]Employee, error) {
 // 	rows, err := db.Query("SELECT FirstName, LastName FROM Employees")
 // 	if err != nil {
 // 		return nil, fmt.Errorf("error querying database: %v", err)
