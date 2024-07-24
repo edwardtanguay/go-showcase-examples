@@ -5,12 +5,13 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"strings"
 
 	_ "github.com/mattn/go-sqlite3"
 )
 
 type App struct {
-	DB *sql.DB
+	DB   *sql.DB
 	Port int
 }
 
@@ -20,7 +21,6 @@ func (a *App) Initialize() error {
 	if err != nil {
 		return fmt.Errorf("error opening database: %v", err)
 	}
-	defer a.DB.Close()
 	return nil
 }
 
@@ -29,7 +29,17 @@ func handleHomeRoute(w http.ResponseWriter, r *http.Request) {
 }
 
 func (a *App) handleEmployeesRoute(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "here the employees v2")
+	employees, err := GetEmployees(a)
+	if err != nil {
+		fmt.Printf("%#v\n", err)
+	} else {
+		var sb strings.Builder
+		fmt.Fprintf(&sb, "<h1>There are %d employees:</h1>", len(employees))
+		for i, emp := range employees {
+			fmt.Fprintf(&sb, "<li>%d. %s</li>", i+1, emp.FirstName+" "+emp.LastName)
+		}
+		fmt.Fprint(w, sb.String())
+	}
 }
 
 func (a *App) Run() {
@@ -39,20 +49,20 @@ func (a *App) Run() {
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", a.Port), nil))
 }
 
-// func GetEmployees(a *App) ([]Employee, error) {
-// 	rows, err := db.Query("SELECT FirstName, LastName FROM Employees")
-// 	if err != nil {
-// 		return nil, fmt.Errorf("error querying database: %v", err)
-// 	}
-// 	defer rows.Close()
+func GetEmployees(a *App) ([]Employee, error) {
+	rows, err := a.DB.Query("SELECT FirstName, LastName FROM Employees")
+	if err != nil {
+		return nil, fmt.Errorf("error querying database: %v", err)
+	}
+	defer rows.Close()
 
-// 	var employees []Employee
-// 	for rows.Next() {
-// 		var e Employee
-// 		rows.Scan(&e.FirstName, &e.LastName)
-// 		employee := Employee{FirstName: e.FirstName, LastName: e.LastName}
-// 		employees = append(employees, employee)
-// 	}
+	var employees []Employee
+	for rows.Next() {
+		var e Employee
+		rows.Scan(&e.FirstName, &e.LastName)
+		employee := Employee{FirstName: e.FirstName, LastName: e.LastName}
+		employees = append(employees, employee)
+	}
 
-// 	return employees, nil
-// }
+	return employees, nil
+}
