@@ -3,7 +3,6 @@ package src
 import (
 	"bytes"
 	"html/template"
-	"log"
 )
 
 func Header() string {
@@ -32,10 +31,7 @@ func SiteBegin() string {
 <body>
 	`)
 	var tpl bytes.Buffer
-	if err := t.Execute(&tpl, data); err != nil {
-		log.Fatal(err)
-	}
-
+	t.Execute(&tpl, data)
 	return tpl.String()
 }
 
