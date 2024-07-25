@@ -27,9 +27,11 @@ func SiteBegin() string {
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>{{.SiteTitle}}</title>
+	<link rel="stylesheet" type="text/css" href="/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 <body>
+	<main>
 	`)
 	var tpl bytes.Buffer
 	t.Execute(&tpl, data)
@@ -38,6 +40,7 @@ func SiteBegin() string {
 
 func SiteEnd() string {
 	return `
+	</main>
 </body>
 </html>
 	`
