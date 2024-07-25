@@ -13,6 +13,7 @@ import (
 type App struct {
 	DB   *sql.DB
 	Port int
+	Router *mux.Router
 }
 
 func (app *App) Initialize() error {
@@ -21,14 +22,15 @@ func (app *App) Initialize() error {
 	if err != nil {
 		return fmt.Errorf("error opening database: %v", err)
 	}
+	app.Router = mux.NewRouter()
 	return nil
 }
 
 func (app *App) Run() {
-	r := mux.NewRouter()
-	r.HandleFunc("/", app.handleHomeRoute).Methods("GET")
-	r.HandleFunc("/employees", app.handleGetEmployeesRoute).Methods("GET")
-	r.HandleFunc("/employees/{id}", app.handleGetSingleEmployeeRoute).Methods("GET")
+	app.Router.HandleFunc("/", app.handleHomeRoute).Methods("GET")
+	app.Router.HandleFunc("/employees", app.handleGetEmployeesRoute).Methods("GET")
+	app.Router.HandleFunc("/employees/{id}", app.handleGetSingleEmployeeRoute).Methods("GET")
+	http.Handle("/", app.Router)
 	fmt.Printf("site running at http://localhost:%d\n", app.Port)
-	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", app.Port), r))
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", app.Port), app.Router))
 }
