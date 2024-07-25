@@ -37,13 +37,12 @@ func (app *App) handleGetSingleEmployeeRoute(w http.ResponseWriter, r *http.Requ
 		http.Error(w, "Invalid employee ID", http.StatusBadRequest)
 		return
 	}
-	employees, err := app.GetSingleEmployee(id)
+	emp, err := app.GetSingleEmployee(id)
 	if err != nil {
 		fmt.Printf("%#v\n", err)
 	} else {
 		var sb strings.Builder
-		emp := employees[0]
-		fmt.Fprintf(&sb, "<h3>%s</h3>", emp.FirstName+" "+emp.LastName)
+		fmt.Fprintf(&sb, "<h3>nnn %s</h3>", emp.FirstName+" "+emp.LastName)
 		fmt.Fprintf(&sb, "<p>%s</p>", emp.Notes)
 		fmt.Fprint(w, Header()+sb.String())
 	}
