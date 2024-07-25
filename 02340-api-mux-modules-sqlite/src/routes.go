@@ -11,7 +11,7 @@ import (
 
 func (app *App) handleHomeRoute(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, Header()+`
-<p>Welcome to this site.</p>
+<p>Welcome to the Northwind site.</p>
 	`)
 }
 

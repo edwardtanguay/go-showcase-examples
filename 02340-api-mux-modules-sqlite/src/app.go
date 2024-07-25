@@ -26,10 +26,14 @@ func (app *App) Initialize() error {
 	return nil
 }
 
-func (app *App) Run() {
+func (app *App) initializeRoutes() {
 	app.Router.HandleFunc("/", app.handleHomeRoute).Methods("GET")
 	app.Router.HandleFunc("/employees", app.handleGetEmployeesRoute).Methods("GET")
 	app.Router.HandleFunc("/employees/{id}", app.handleGetSingleEmployeeRoute).Methods("GET")
+}
+
+func (app *App) Run() {
+	app.initializeRoutes()
 	http.Handle("/", app.Router)
 	fmt.Printf("site running at http://localhost:%d\n", app.Port)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", app.Port), app.Router))
