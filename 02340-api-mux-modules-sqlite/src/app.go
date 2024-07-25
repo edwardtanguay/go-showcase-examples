@@ -34,6 +34,11 @@ func (app *App) initializeRoutes() {
 
 func (app *App) Run() {
 	app.initializeRoutes()
+
+	staticDir := http.Dir("./static")
+	staticFileHandler := http.StripPrefix("/", http.FileServer(staticDir))
+	app.Router.PathPrefix("/").Handler(staticFileHandler).Methods("GET")
+
 	http.Handle("/", app.Router)
 	fmt.Printf("site running at http://localhost:%d\n", app.Port)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", app.Port), app.Router))
