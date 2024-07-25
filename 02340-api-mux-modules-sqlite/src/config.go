@@ -2,7 +2,7 @@ package src
 
 func Config() ConfigData {
 	c := ConfigData{
-		Version: "v12",
+		Version: "v13",
 		SiteTitle: "Northwind Site",
 	}
 	return c
