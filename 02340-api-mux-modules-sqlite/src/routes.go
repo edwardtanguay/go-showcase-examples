@@ -39,9 +39,11 @@ func (app *App) handleGetEmployeesRoute(w http.ResponseWriter, _ *http.Request) 
 	} else {
 		var sb strings.Builder
 		fmt.Fprintf(&sb, "<h2>There are %d employees:</h2>", len(employees))
+		fmt.Fprint(&sb, "<ul>")
 		for _, emp := range employees {
 			fmt.Fprintf(&sb, "<li><a href=\"/employees/%d\">%s</a></li>", emp.Id, emp.FirstName+" "+emp.LastName)
 		}
+		fmt.Fprint(&sb, "</ul>")
 		fmt.Fprint(w, SiteBegin() + Header()+sb.String() + SiteEnd())
 	}
 }
