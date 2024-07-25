@@ -42,7 +42,7 @@ func (app *App) handleGetSingleEmployeeRoute(w http.ResponseWriter, r *http.Requ
 		fmt.Printf("%#v\n", err)
 	} else {
 		var sb strings.Builder
-		fmt.Fprintf(&sb, "<h3>nnn %s</h3>", emp.FirstName+" "+emp.LastName)
+		fmt.Fprintf(&sb, "<h3>%s</h3>", emp.FirstName+" "+emp.LastName)
 		fmt.Fprintf(&sb, "<p>%s</p>", emp.Notes)
 		fmt.Fprint(w, Header()+sb.String())
 	}
