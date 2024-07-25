@@ -1,6 +1,6 @@
 package src
 
 func Config() ConfigData {
-	c := ConfigData{Version: "0.0.3"}
+	c := ConfigData{Version: "v0.0.6"}
 	return c
 }

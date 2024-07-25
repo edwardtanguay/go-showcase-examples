@@ -2,6 +2,7 @@ package src
 
 import (
 	"fmt"
+	"html/template"
 	"net/http"
 	"strconv"
 	"strings"
@@ -10,9 +11,19 @@ import (
 )
 
 func (app *App) handleHomeRoute(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, Header()+ Config().Version + `
-<p>Welcome to the Northwind site. v0.0.2</p>
+	type Data struct {
+		Header  template.HTML
+		Version string
+	}
+	data := Data{
+		Header:  template.HTML(Header()),
+		Version: Config().Version,
+	}
+	t, _ := template.New("page").Parse(`
+{{.Header}}
+<p>Welcome to the Northwind site. {{.Version}}</p>
 	`)
+	t.Execute(w, data)
 }
 
 func (app *App) handleGetEmployeesRoute(w http.ResponseWriter, _ *http.Request) {
