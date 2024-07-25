@@ -42,7 +42,7 @@ func (app *App) handleGetEmployeesRoute(w http.ResponseWriter, _ *http.Request) 
 		for _, emp := range employees {
 			fmt.Fprintf(&sb, "<li><a href=\"/employees/%d\">%s</a></li>", emp.Id, emp.FirstName+" "+emp.LastName)
 		}
-		fmt.Fprint(w, Header()+sb.String())
+		fmt.Fprint(w, SiteBegin() + Header()+sb.String() + SiteEnd())
 	}
 }
 
@@ -61,6 +61,6 @@ func (app *App) handleGetSingleEmployeeRoute(w http.ResponseWriter, r *http.Requ
 		var sb strings.Builder
 		fmt.Fprintf(&sb, "<h3>%s</h3>", emp.FirstName+" "+emp.LastName)
 		fmt.Fprintf(&sb, "<p>%s</p>", emp.Notes)
-		fmt.Fprint(w, Header()+sb.String())
+		fmt.Fprint(w, SiteBegin() + Header()+sb.String() + SiteEnd())
 	}
 }
