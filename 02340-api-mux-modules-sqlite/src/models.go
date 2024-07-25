@@ -5,8 +5,8 @@ import (
 	"fmt"
 )
 
-func (app *App) GetEmployees() ([]Employee, error) {
-	rows, err := app.DB.Query("SELECT EmployeeID as Id, FirstName, LastName, Notes FROM Employees")
+func GetEmployees(db *sql.DB) ([]Employee, error) {
+	rows, err := db.Query("SELECT EmployeeID as Id, FirstName, LastName, Notes FROM Employees")
 	if err != nil {
 		return nil, fmt.Errorf("error querying database: %v", err)
 	}

@@ -11,12 +11,12 @@ import (
 
 func (app *App) handleHomeRoute(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, Header()+`
-<p>Welcome to the Northwind site.</p>
+<p>Welcome to the Northwind site. v0.0.1</p>
 	`)
 }
 
 func (app *App) handleGetEmployeesRoute(w http.ResponseWriter, _ *http.Request) {
-	employees, err := app.GetEmployees()
+	employees, err := GetEmployees(app.DB)
 	if err != nil {
 		fmt.Printf("%#v\n", err)
 	} else {
