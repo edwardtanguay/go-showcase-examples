@@ -1,12 +1,30 @@
 body {
 	background-color: #333;
 	font-family: monospace;
-	padding: 2rem;
 }
 
 main {
-	width: 40rem;
 	padding: 1rem;
 	background-color: #ccc;
-	border-radius: .5rem;
+}
+
+/* smartphone view */
+@media (max-width: 767px) {
+	main {
+		width: 100%;
+	}
+}
+
+/* computer/tablet view */
+@media (min-width: 768px) {
+	body {
+		display: flex;
+		justify-content: center;
+		padding-top: 2rem;
+	}
+
+	main {
+		width: 40rem;
+		border-radius: .5rem;
+	}
 }
