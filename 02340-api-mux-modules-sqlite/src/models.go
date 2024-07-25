@@ -23,9 +23,9 @@ func GetEmployees(db *sql.DB) ([]Employee, error) {
 	return employees, nil
 }
 
-func (app *App) GetSingleEmployee(id int) (Employee, error) {
+func GetSingleEmployee(db *sql.DB, id int) (Employee, error) {
 	var e Employee
-	err := app.DB.QueryRow("SELECT EmployeeID as Id, FirstName, LastName, Notes FROM Employees WHERE EmployeeID = ?", id).Scan(&e.Id, &e.FirstName, &e.LastName, &e.Notes)
+	err := db.QueryRow("SELECT EmployeeID as Id, FirstName, LastName, Notes FROM Employees WHERE EmployeeID = ?", id).Scan(&e.Id, &e.FirstName, &e.LastName, &e.Notes)
 	if err != nil {
 		if err == sql.ErrNoRows {
 			return e, fmt.Errorf("no employee found with id %d", id)

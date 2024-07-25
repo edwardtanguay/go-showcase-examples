@@ -11,7 +11,7 @@ import (
 
 func (app *App) handleHomeRoute(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, Header()+`
-<p>Welcome to the Northwind site. v0.0.1</p>
+<p>Welcome to the Northwind site. v0.0.2</p>
 	`)
 }
 
@@ -37,7 +37,7 @@ func (app *App) handleGetSingleEmployeeRoute(w http.ResponseWriter, r *http.Requ
 		http.Error(w, "Invalid employee ID", http.StatusBadRequest)
 		return
 	}
-	emp, err := app.GetSingleEmployee(id)
+	emp, err := GetSingleEmployee(app.DB, id)
 	if err != nil {
 		fmt.Printf("%#v\n", err)
 	} else {
