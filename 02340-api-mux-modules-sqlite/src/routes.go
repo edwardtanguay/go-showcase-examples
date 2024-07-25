@@ -10,7 +10,7 @@ import (
 )
 
 func (app *App) handleHomeRoute(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, Header()+`
+	fmt.Fprintf(w, Header()+ Config().Version + `
 <p>Welcome to the Northwind site. v0.0.2</p>
 	`)
 }

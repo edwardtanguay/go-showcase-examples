@@ -6,3 +6,7 @@ type Employee struct {
 	LastName  string
 	Notes     string
 }
+
+type ConfigData struct {
+	Version string
+}
