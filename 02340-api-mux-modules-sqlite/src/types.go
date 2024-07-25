@@ -9,4 +9,5 @@ type Employee struct {
 
 type ConfigData struct {
 	Version string
+	SiteTitle string
 }
