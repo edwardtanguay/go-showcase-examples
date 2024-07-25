@@ -8,3 +8,15 @@ func Header() string {
 <hr>
 	` 
 }
+
+func SiteBegin() string {
+	return `
+	<b>SITEBEGIN</b>
+	` 
+}
+
+func SiteEnd() string {
+	return `
+	<b>SITEEND</b>
+	` 
+}

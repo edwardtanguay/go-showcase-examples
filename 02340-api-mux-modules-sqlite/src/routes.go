@@ -12,16 +12,22 @@ import (
 
 func (app *App) handleHomeRoute(w http.ResponseWriter, r *http.Request) {
 	type Data struct {
+		SiteBegin template.HTML
+		SiteEnd template.HTML
 		Header  template.HTML
 		Version string
 	}
 	data := Data{
+		SiteBegin: template.HTML(SiteBegin()),
+		SiteEnd: template.HTML(SiteEnd()),
 		Header:  template.HTML(Header()),
 		Version: Config().Version,
 	}
 	t, _ := template.New("page").Parse(`
+{{.SiteBegin}}
 {{.Header}}
 <p>Welcome to the Northwind site. {{.Version}}</p>
+{{.SiteEnd}}
 	`)
 	t.Execute(w, data)
 }
