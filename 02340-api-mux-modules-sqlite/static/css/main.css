@@ -1,5 +1,4 @@
 body {
-	background-color: #333;
 	font-family: monospace;
 }
 
@@ -8,8 +7,17 @@ main {
 	background-color: #ccc;
 }
 
+nav {
+	display: flex;
+	gap: .5rem;
+}
+
 /* smartphone view */
 @media (max-width: 767px) {
+	body {
+		background-color: #ccc;
+	}
+
 	main {
 		width: 100%;
 	}
@@ -21,6 +29,7 @@ main {
 		display: flex;
 		justify-content: center;
 		padding-top: 2rem;
+		background-color: #333;
 	}
 
 	main {
