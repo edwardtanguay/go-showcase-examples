@@ -15,9 +15,12 @@ Also see my Tech Site [Skills page](https://tanguay-eu.vercel.app/skills)
     - `cd 00100-hello`
     - `go build -o hello.exe main.go`
     - in Windows terminal, `hello`
-	- Git bash: `./hello`
+      - also in Git bash: `./hello`
   - Mac/Linux and Windows Bash
     - `cd 00100-hello`
     - `go build -o hello main.go`
     - in Windows terminal, `hello`
 
+- run helper files
+  - `cd 00210-foriloop`
+  - `go run main.go tools.go`

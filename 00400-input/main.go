@@ -19,8 +19,9 @@ func main() {
 	ageString, _ := reader.ReadString('\n')
 	ageFloat, err := strconv.ParseFloat(strings.TrimSpace(ageString), 64)
 	if(err != nil) {
+		fmt.Println("Sorry, there was an error:")
 		fmt.Println(err)
 	} else {
-		fmt.Printf(`You age to 2 decimal places is %.2f.`, ageFloat)
+		fmt.Printf(`Your age to 2 decimal places is %.2f.`, ageFloat)
 	}
 }
