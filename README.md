@@ -26,4 +26,7 @@ Also see my Tech Site [Skills page](https://tanguay-eu.vercel.app/skills)
   - `go run main.go tools.go`
 
 - create executable with multiple files
+  - `cd 00600-math`
+  - `go build -o shownums main.go tools.go`
+  - `sudo mv shownums /usr/local/bin` (for Windows, copy to folder that is included in the environment paths)
 
