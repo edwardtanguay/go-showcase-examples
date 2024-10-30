@@ -27,10 +27,10 @@ func fetchUrl(url string, ch chan<- string) {
 
 func main() {
 	urls := []string{
-		"https://google.com",
-		"https://amazon.com",
 		"https://stackoverflow.com",
+		"https://amazon.com",
 		"https://www.heise.de",
+		"https://google.com",
 	}
 
 	ch := make(chan string)

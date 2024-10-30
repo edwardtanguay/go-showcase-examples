@@ -23,10 +23,10 @@ func main() {
 	emp2 := Employee{"Sven Techton", "it", []string{"JavaScript World", "IT trends"}}
 	emp3 := Employee{"Angel Marketon", "sales", []string{"Sales World", "Sales Marketplace"}}
 
-	employees := []Employee{emp1, emp2, emp3}
+	employees := []*Employee{&emp1, &emp2, &emp3}
 
 	for _, employee := range employees {
-		fmt.Printf("%+v\n", employee)
+		fmt.Printf("%#v\n", employee)
 	}
 
 	for _, employee := range employees {
