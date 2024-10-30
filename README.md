@@ -56,3 +56,5 @@ Also see my Tech Site [Skills page](https://tanguay-eu.vercel.app/skills)
 - **02220-empty-interface** - example of empty interface which functions as TypeScript's "any"
 - **02250-concurrency** - simple example of using concurrency to fetch data from 4 API's without having to wait for each one to finish before starting the next
 - **02290-web-templates** - good example of using EJS-like templates for websites
+- **02300-use-custom-module** - very useful example of importing gotools from github.com/edwardtanguay/gotools, i.e. using custom libraries in any project
+- **02310-pointers** - clear example of how to pass either a pointer or a value to a function
