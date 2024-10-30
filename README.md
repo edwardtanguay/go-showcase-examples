@@ -30,3 +30,10 @@ Also see my Tech Site [Skills page](https://tanguay-eu.vercel.app/skills)
   - `go build -o shownums main.go tools.go`
   - `sudo mv shownums /usr/local/bin` (for Windows, copy to folder that is included in the environment paths)
 
+- to create example directories
+  - `cd 00900-cli-crex`
+  - `go build -o crex main.go tools.go`
+  - copy go to a PATH directory, e.g. `sudo mv crex /usr/local/bin`
+  - in root of this project, `crex` to get help, or `crex 00999-advanced-for-loops`
+
+
