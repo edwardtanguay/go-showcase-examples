@@ -41,4 +41,10 @@ Also see my Tech Site [Skills page](https://tanguay-eu.vercel.app/skills)
 - couldn't get these to work: 
   - 00920, 00930
 
+## best
+
+- **01310-structMethods** - how to attach methods on structs
+- **01500-for** - various ways to loop through slices
+- **01600-api** - the simplest API, serves an array of strings
+
 
