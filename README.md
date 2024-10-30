@@ -52,5 +52,5 @@ Also see my Tech Site [Skills page](https://tanguay-eu.vercel.app/skills)
 - **01800-functions** - basics of functions, e.g. return values, multiple parameters
 - **02000-fetch-and-create-files** - fetchs an array of items via API and creates a HTML file that displays them
 - **02100-url** - function that takes a URL and returns info from it, base url, url variables
-- 
+- **02150-pointers** - simple example of pointers 
 

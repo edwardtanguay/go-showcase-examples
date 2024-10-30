@@ -1,11 +1,10 @@
+
 package main
 
 import (
 	"fmt"
 	"strings"
 )
-
-var url = "http://google.com"
 
 func separator(title ...string) {
 	width := 50
@@ -14,11 +13,11 @@ func separator(title ...string) {
 	if len(title) == 0 || title[0] == "" {
 		fmt.Println(strings.Repeat(character, width))
 	} else {
-		fmt.Printf("%s %s %s\n", strings.Repeat(character, preWidth), strings.ToUpper(title[0]), strings.Repeat(character, width-len(title[0])-preWidth-2))
+		fmt.Printf("%s %s %s\n", strings.Repeat(character, preWidth), strings.ToUpper(title[0]), strings.Repeat(character, width - len(title[0]) - preWidth - 2))
 	}
 }
 
-func CheckError(err error) {
+func checkError(err error) {
 	if err != nil {
 		panic(err)
 	}

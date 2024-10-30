@@ -13,5 +13,10 @@
 		"hex": "#00ffff",
 		"name": "Aqua",
 		"textColor": "dark"
+	},
+	{
+		"hex": "#000000",
+		"name": "Black",
+		"textColor": "light"
 	}
 ]

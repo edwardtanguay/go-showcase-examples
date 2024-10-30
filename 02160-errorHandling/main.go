@@ -26,6 +26,10 @@ func main() {
 	employees := []Employee{emp1, emp2, emp3}
 
 	for _, employee := range employees {
+		fmt.Printf("%+v\n", employee)
+	}
+
+	for _, employee := range employees {
 		err := employee.addSalesConference("Sales Experts Conference")
 		if err != nil {
 			fmt.Printf("ERROR: %v\n", err)
