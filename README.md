@@ -58,3 +58,6 @@ Also see my Tech Site [Skills page](https://tanguay-eu.vercel.app/skills)
 - **02290-web-templates** - good example of using EJS-like templates for websites
 - **02300-use-custom-module** - very useful example of importing gotools from github.com/edwardtanguay/gotools, i.e. using custom libraries in any project
 - **02310-pointers** - clear example of how to pass either a pointer or a value to a function
+- **02315-sqlite-basic-read** - simple example of getting data from an sqlite database, you have to load the import (quick fix)
+- **02317-sqlite-basic-convert-to-structs** - function gets data from sqlite, converts it slice Employees, load import (quick fix)
+- **02330-api-mux** - CRUD API using Gorilla Mux
