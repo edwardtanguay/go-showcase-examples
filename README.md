@@ -46,5 +46,6 @@ Also see my Tech Site [Skills page](https://tanguay-eu.vercel.app/skills)
 - **01310-structMethods** - how to attach methods on structs
 - **01500-for** - various ways to loop through slices
 - **01600-api** - the simplest API, serves an array of strings
+- **01610-api-text-fprintf** - simplest webs server, serves a HTML string
 
 
