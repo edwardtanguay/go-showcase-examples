@@ -47,5 +47,9 @@ Also see my Tech Site [Skills page](https://tanguay-eu.vercel.app/skills)
 - **01500-for** - various ways to loop through slices
 - **01600-api** - the simplest API, serves an array of strings
 - **01610-api-text-fprintf** - simplest webs server, serves a HTML string
-
+- **01620-api-handler** - simple API with routes that call functions
+- **01700-methods** - attaching methods to structs, pseudo OOP in Go
+- **01800-functions** - basics of functions, e.g. return values, multiple parameters
+- 
+- 
 
