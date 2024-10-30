@@ -50,6 +50,6 @@ Also see my Tech Site [Skills page](https://tanguay-eu.vercel.app/skills)
 - **01620-api-handler** - simple API with routes that call functions
 - **01700-methods** - attaching methods to structs, pseudo OOP in Go
 - **01800-functions** - basics of functions, e.g. return values, multiple parameters
-- 
+- **02000-fetch-and-create-files** - fetchs an array of items via API and creates a HTML file that displays them
 - 
 
