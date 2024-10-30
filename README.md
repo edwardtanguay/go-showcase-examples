@@ -10,7 +10,7 @@ Also see my Tech Site [Skills page](https://tanguay-eu.vercel.app/skills)
   - `cd 00100-hello`
   - `go run main.go`
 
-- create an executable file
+- create executable file
   - Windows
     - `cd 00100-hello`
     - `go build -o hello.exe main.go`
@@ -21,6 +21,9 @@ Also see my Tech Site [Skills page](https://tanguay-eu.vercel.app/skills)
     - `go build -o hello main.go`
     - in Windows terminal, `hello`
 
-- run helper files
+- run main.go with additional files
   - `cd 00210-foriloop`
   - `go run main.go tools.go`
+
+- create executable with multiple files
+
