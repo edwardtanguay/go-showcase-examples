@@ -36,4 +36,9 @@ Also see my Tech Site [Skills page](https://tanguay-eu.vercel.app/skills)
   - copy go to a PATH directory, e.g. `sudo mv crex /usr/local/bin`
   - in root of this project, `crex` to get help, or `crex 00999-advanced-for-loops`
 
+## known issues
+
+- couldn't get these to work: 
+  - 00920, 00930
+
 
