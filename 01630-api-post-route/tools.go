@@ -33,7 +33,7 @@ func getFlashcardsFromJsonFile(fileName string) ([]Flashcard, error) {
 }
 
 func writeFlashcardsToJsonFile(fileName string, flashcards []Flashcard) error {
-	byteData, err := json.MarshalIndent(flashcards, "", "  ")
+	byteData, err := json.MarshalIndent(flashcards, "", "\t")
 	if err != nil {
 		return fmt.Errorf("error processing flashcards: %v", err)
 	}

@@ -61,3 +61,4 @@ Also see my Tech Site [Skills page](https://tanguay-eu.vercel.app/skills)
 - **02315-sqlite-basic-read** - simple example of getting data from an sqlite database, you have to load the import (quick fix)
 - **02317-sqlite-basic-convert-to-structs** - function gets data from sqlite, converts it slice Employees, load import (quick fix)
 - **02330-api-mux** - CRUD API using Gorilla Mux
+- **01630-api-post-route** - accepts a flashcard via POST and appends it to a JSON file
