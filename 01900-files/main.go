@@ -22,11 +22,13 @@ func createTextFile(idCode, content string) {
 func readTextFile(idCode string) {
 	pathAndFileName := filepath.Join(dirName, idCode+".txt")
 	data, err := os.ReadFile(pathAndFileName)
+	fmt.Println(11111, data)
+	fmt.Println(11112, string(data))
 	checkError(err)
 	fmt.Printf(`
 >>> %s
 ----------------------------------------------
-%s
+%v
 ----------------------------------------------
 `, pathAndFileName, data)
 }
