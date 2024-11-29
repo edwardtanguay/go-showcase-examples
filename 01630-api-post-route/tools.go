@@ -1,5 +1,16 @@
 package main
 
+import (
+	"fmt"
+	"math/rand"
+)
+
 func getSuuid() string {
-	return "nnn222"
+	const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+	byteSuuid := make([]byte, 6)
+	for i := range byteSuuid {
+		byteSuuid[i] = charset[rand.Intn(len(charset))]
+	}
+	fmt.Printf("%v", byteSuuid)
+	return string(byteSuuid)
 }
