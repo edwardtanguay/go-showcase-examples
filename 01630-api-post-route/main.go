@@ -25,7 +25,7 @@ func handlePostCreateFlashcard(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		http.Error(w, "Invalid JSON", http.StatusBadRequest)
 	}
-	flashcard.Id = "nnn"
+	flashcard.Id = getSuuid()
 	
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(flashcard)
