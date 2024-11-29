@@ -63,6 +63,6 @@ Also see my Tech Site [Skills page](https://tanguay-eu.vercel.app/skills)
 - **02330-api-mux** - CRUD API using Gorilla Mux
 - **01630-api-post-route** - accepts a flashcard via POST and appends it to a JSON file
 
-# location
+# online location
 
 https://github.com/edwardtanguay/go-showcase-examples 
