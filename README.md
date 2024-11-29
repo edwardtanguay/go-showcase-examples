@@ -62,3 +62,7 @@ Also see my Tech Site [Skills page](https://tanguay-eu.vercel.app/skills)
 - **02317-sqlite-basic-convert-to-structs** - function gets data from sqlite, converts it slice Employees, load import (quick fix)
 - **02330-api-mux** - CRUD API using Gorilla Mux
 - **01630-api-post-route** - accepts a flashcard via POST and appends it to a JSON file
+
+# location
+
+https://github.com/edwardtanguay/go-showcase-examples 
