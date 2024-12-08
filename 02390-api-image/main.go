@@ -3,12 +3,20 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
 )
 
 func main() {
 	http.HandleFunc("/logo", func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == http.MethodGet {
-			fmt.Println("ok")
+			imagePathAndFileName := "images/logo.png"
+			image, err := os.ReadFile(imagePathAndFileName)
+			if err != nil {
+				fmt.Println("bad image")
+			}
+			w.WriteHeader(http.StatusOK)
+			w.Header().Set("Content-Type", "application/octet-stream")
+			w.Write(image)
 		} else {
 			http.Error(w, "resource not found", http.StatusNotFound)
 			return
