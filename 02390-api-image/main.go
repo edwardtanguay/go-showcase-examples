@@ -12,7 +12,9 @@ func main() {
 			imagePathAndFileName := "images/logo.png"
 			image, err := os.ReadFile(imagePathAndFileName)
 			if err != nil {
-				fmt.Println("bad image")
+				fmt.Println("bad image request")
+				http.Error(w, "bad image", http.StatusBadRequest)
+				return
 			}
 			w.WriteHeader(http.StatusOK)
 			w.Header().Set("Content-Type", "application/octet-stream")
