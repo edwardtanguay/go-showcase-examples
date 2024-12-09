@@ -9,29 +9,29 @@ import (
 
 // build command: go build -o crex.exe main.go
 
-func writeFile(dirName string, fileName string, content string) {
+func writeFile(dirName string, fileName string, content string) error {
 
 	filePath := filepath.Join(dirName, fileName)
 
 	file, err := os.Create(filePath)
 
 	if err != nil {
-		fmt.Printf("Error creating file: %v\n", err)
-		return
+		return fmt.Errorf("error creating file: %v", err)
 	}
 	defer file.Close()
 
 	_, err = file.WriteString(content)
 	if err != nil {
-		fmt.Printf("Error writing to file: %v\n", err)
-		return
+		return fmt.Errorf("error writing to file: %v", err)
 	}
+
+	return nil
 }
 
 func createGoModFile(directory string) error {
 	err := os.Chdir(directory)
 	if err != nil {
-		fmt.Errorf("Could not chnage to directory \"%s\", error: %w", directory, err)
+		return fmt.Errorf("could not change to directory \"%s\", error: %v", directory, err)
 	}
 
 	cmd := exec.Command("go", "mod", "init", directory)
@@ -40,7 +40,7 @@ func createGoModFile(directory string) error {
 	err = cmd.Run()
 
 	if err != nil {
-		fmt.Errorf("Could not initialize go.mod file, error: %w", err)
+		return fmt.Errorf("could not initialize go.mod file, error: %v", err)
 	}
 
 	return nil
@@ -97,6 +97,9 @@ func checkError(err error) {
 }
 `)
 
-createGoModFile(dirName)
+	err = createGoModFile(dirName)
+	if err != nil {
+		fmt.Printf("ERROR: %v", err)
+	}
 
 }
