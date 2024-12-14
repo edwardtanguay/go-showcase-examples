@@ -13,12 +13,19 @@ func main() {
 			http.Error(w, "could not find resource", http.StatusNotFound)
 			return
 		} else {
-			html := `
-			This is <b>html</b>.	
-			`
-			w.Header().Set("Content-Type", "text/html")
-			w.WriteHeader(http.StatusOK)
-			w.Write([]byte(html))
+			fileXslx, err := generateXslxFile()
+			if err != nil {
+				http.Error(w, "There was an internal error:", http.StatusInternalServerError)
+				return
+			}
+
+			w.Header().Set("Content-Disposition", "attachment; filename=info.xlsx")
+			w.Header().Set("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheethtml.sheet")
+			err = fileXslx.Write(w)
+			if err != nil {
+				http.Error(w, "xslx file could not be created", http.StatusInternalServerError)
+				return
+			}
 		}
 
 	})
